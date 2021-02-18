@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:VkCCGui.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="VkCCGui.Views.MainWindow"
+        Width="550"
+        Height="300"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="VkCCGui">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Label>Токен Вконтакте:</Label>
+        <TextBox Grid.Row="1" 
+                 Grid.ColumnSpan="2" 
+                 HorizontalAlignment="Stretch"
+                 Text="{Binding Token}"></TextBox>
+        
+        <Label Grid.Row="2">Выберите файл-источник:</Label>
+        <TextBox Grid.Row="3"
+            MinWidth="250"
+            Margin="0 0 5 0"
+            Text="{Binding FromFilePath}"></TextBox>
+        <Button Grid.Row="3" 
+                Grid.Column="1" 
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                Command="{Binding OpenFileCommand}">Открыть файл</Button>
+        
+        <Label Grid.Row="4">Сохранить результат в папку:</Label>
+        <TextBox Grid.Row="5"
+                 Margin="0 0 5 0"
+                 Text="{Binding ToFilePath}"></TextBox>
+        <Button Grid.Row="5" 
+                Grid.Column="1" 
+                HorizontalContentAlignment="Center"
+                HorizontalAlignment="Stretch" 
+                Command="{Binding OpenFolderCommand}">Открыть папку</Button>
+        
+        <Label Grid.Row="6">Задержка между запросами (миллисекунды)</Label>
+        <TextBox Grid.Row="7"
+                 Grid.ColumnSpan="2"
+                 Text="{Binding Delay}"></TextBox>
+        
+        <ProgressBar Grid.Row="8" 
+                     Margin="0 10"
+                     Grid.ColumnSpan="2"
+                     HorizontalAlignment="Stretch"
+                     Maximum="{Binding LinksCount}"
+                     Value="{Binding CurrentProgress, Mode=OneWay}" 
+                     IsVisible="{Binding IsStarted}"/>
+        
+        <Button Grid.Row="9" 
+                Grid.ColumnSpan="2"
+                Margin="0 10"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                Command="{Binding StartCommand}">Сократить ссылки</Button>
+    </Grid>
+</Window>
